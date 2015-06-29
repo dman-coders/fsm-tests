@@ -9,9 +9,46 @@ default:
         - Drupal\DrupalExtension\Context\DrushContext
   extensions:
     Behat\MinkExtension:
-      goutte: ~
-      selenium2: ~
-      base_url: http://example.local
+      # This should be set from CLI
+      # base_url: http://example.local
+
+      # Which runner to use for javascript-enabled tests.
+      javascript_session:  'selenium2'
+
+      # Name the browser runners available
+      # and their options
+      #goutte: ~
+        # This runs as default client unless the test specified javascript.
+      selenium2:
+        # This requires you to be running selenium server
+        # With the expected parameters.
+        browser: chrome
+        # Optional parameters:
+        # wd_host: 'http://localhost:4444/wd/hub'
+        # capabilities: { "browserName": "chrome", "browser": "chrome"}
+
     Drupal\DrupalExtension:
       blackbox: ~
 
+
+# Run these with :
+#    behat -p firefox
+chrome:
+  extensions:
+    Behat\MinkExtension:
+      browser_name: googlechrome
+
+firefox:
+  extensions:
+    Behat\MinkExtension:
+      browser_name: firefox
+      selenium2:
+        browser: firefox
+
+phantomjs:
+  extensions:
+    Behat\MinkExtension:
+      # Phantomjs runner pretends to be Selenium.
+      # Sahi seems flaky.
+      selenium2:
+        wd_host: "http://localhost:8643/wd/hub"
