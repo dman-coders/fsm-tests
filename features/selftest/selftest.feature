@@ -4,13 +4,7 @@ Feature: Check connection to the site
   As a tester
   I need to prove that behat testing works.
 
-  Scenario: Test opening the front page
+  Scenario: Test opening the front page and checking the 'Generator' metatag
     Given I am on the homepage
-    Then I should see the text "Drupal 7"
+    Then the response should contain "Drupal 7 (http://drupal.org)"
 
-  Scenario: Test opening the front page
-    Given I am on the homepage
-    When I click "Contact"
-    Then I should see the heading "Contact" in the "content" region
-
-  #<meta name="generator" content="Drupal 7 (http://drupal.org)" />

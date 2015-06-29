@@ -7,6 +7,8 @@ default:
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\MessageContext
         - Drupal\DrupalExtension\Context\DrushContext
+        - Drupal\DrupalExtension\Context\MarkupContext
+
   extensions:
     Behat\MinkExtension:
       # This should be set from CLI
@@ -17,7 +19,7 @@ default:
 
       # Name the browser runners available
       # and their options
-      #goutte: ~
+      goutte: ~
         # This runs as default client unless the test specified javascript.
       selenium2:
         # This requires you to be running selenium server

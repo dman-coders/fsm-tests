@@ -3,7 +3,17 @@
     composer install
     bin/behat --init
 
-This will install the main dependencies.
+This will install the main dependencies locally. 
+A fresh install may take a minute or two and download 17M.
+
+It can be more efficient for you to install the entire Behat dependency
+package once, [somewhere more global](http://behat-drupal-extension.readthedocs.org/en/3.0/globalinstall.html)
+on your machine.
+However, as versions of these libraries can be sensitive,
+and we don't want to cause any side effects - these instructions will try to 
+keep as much as possible local to this install directory.
+If this is a tool you want to use in more than one place, then consider
+shifting the libraries to a higer place.
 
 By default, tests will run 'headless' with the goutte html-only 
 requests. You won't see anything but the analysis results.
@@ -55,6 +65,7 @@ This setup from 2015-06 uses:
 
 Local on OSX, try instructions from
 https://gist.github.com/dhrrgn/c2db3dbcc0ccc7dba500
+to place the jar file into /usr/lib/selenium/
 
 That also gives steps for setting up the service so it autostarts
 which is much more fun than doing it manually.
@@ -63,8 +74,8 @@ See `org.nhabit.Selenium.plist`
 However, the first time, you should do it by hand until it's running
 so you can confirm it's working.
 
-It is expected to run either Firefox or Safari without much
-extra effort, and can run Chrome b installing chromedriver.
+It is expected to immediately run Firefox without much
+extra effort, and can also run Chrome by installing chromedriver.
 
 ### Start the Selenium server manually
 
@@ -80,9 +91,9 @@ http://localhost:4444/wd/hub/static/resource/hub.html
 
 ### Install Chromedriver to run chrome.
 
-https://sites.google.com/a/chromium.org/chromedriver/getting-started
+[Check the latest docs, as development is ongoing here](https://sites.google.com/a/chromium.org/chromedriver/getting-started)
 
-Place it in (eg /usr/lib/chromedriver) or (better) your usr/local/bin/
+Place it in (eg /usr/lib/chromedriver) or (better) your /usr/local/bin/
 
 If you place chromedriver somewhere NOT in your $path, then list the path
 for the server to find it.
@@ -93,7 +104,7 @@ for the server to find it.
 ### Test Selenium + chromedriver is running
 
 When all is running, run feature tests with chrome by specifying it in the
-behat command by naming the chrome profile.
+behat command by naming the `chrome` profile.
 
     behat -p chrome features/selftest/selftest.feature 
     behat -p chrome features/selftest/screenshot.feature
@@ -103,7 +114,9 @@ behat command by naming the chrome profile.
 PhantomJS is a virtual headless browser emulator, that nevertheless runs 
 DOM and javascript.
 It works much like Selenium, so requires a daemon task to be running
-which behat sends instructions to.
+which Behat sends instructions to.
+Avoid older tutorials that say to install it with `sahi`. The more recent 
+version works stand-alone.
 
     brew update && brew install phantomjs
 
