@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!-- OSX Run selenium server as a background service -->
+<!--
+  * COPY this file to your ~/Library/LaunchAgents/org.nhabit.Selenium.plist
+  * INSTALL selenium server jar into /usr/lib/selenium/
+  * UPDATE the version number in the ProgramArguments below
+  * REGISTER it by running `launchctl load ~/Library/LaunchAgents/org.nhabit.Selenium.plist`
+  * TEST it by visiting http://localhost:4444/wd/hub/static/resource/hub.html
+    May take half a minute to warm up the first time
+  * USE it from behat 
+
+  * THANK https://gist.github.com/dhrrgn/c2db3dbcc0ccc7dba500
+-->
+
+<dict>
+        <key>Label</key>
+        <string>org.nhabit.Selenium</string>
+        <key>OnDemand</key>
+        <true/>
+        <key>ProgramArguments</key>
+        <array>
+          <string>/usr/bin/java</string>
+          <string>-jar</string>
+          <string>/usr/lib/selenium/selenium-server-standalone-2.41.0.jar</string>
+          <string>-port</string>
+          <string>4444</string>
+        </array>
+        
+        <!-- This should be able to be registered to wake up on demand -->
+        <key>ServiceIPC</key>
+        <true/>
+        <key>Sockets</key>
+        <dict>
+          <key>Listeners</key>
+          <dict>
+            <key>SockServiceName</key>
+            <string>4444</string>
+            <key>SockType</key>
+            <string>stream</string>
+            <key>SockFamily</key>
+            <string>IPv4</string>
+          </dict>
+        </dict>
+
+        <key>ServiceDescription</key>
+        <string>Selenium Server</string>
+        <key>StandardErrorPath</key>
+        <string>/var/log/selenium-error.log</string>
+        <key>StandardOutPath</key>
+        <string>/var/log/selenium-output.log</string>
+</dict>
+</plist>
