@@ -1,4 +1,4 @@
-@demo
+@demo @javascript
 Feature: Check Ability to screenshot
   In order to ensure the testing connections are working
   As a tester
@@ -6,5 +6,5 @@ Feature: Check Ability to screenshot
 
   Scenario: Test opening the front page
     Given I am on the homepage
-    Then show me a screenshot
+    #Then show me a screenshot
 

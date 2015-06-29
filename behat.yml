@@ -24,13 +24,29 @@ default:
       selenium2:
         # This requires you to be running selenium server
         # With the expected parameters.
+        # Firefox is slow to startup. Use Chome wherever possible
         browser: chrome
-        # Optional parameters:
-        # wd_host: 'http://localhost:4444/wd/hub'
-        # capabilities: { "browserName": "chrome", "browser": "chrome"}
+        # Theoretically optional parameters, but thins WORK better
+        # when they are set.
+        wd_host: 'http://localhost:4444/wd/hub'
+        capabilities: { "browserName": "chrome", "browser": "chrome"}
+
+        # This one invokes phantomjs instead, which is faster but mysterious.
+        #wd_host: "http://localhost:8643/wd/hub"
 
     Drupal\DrupalExtension:
+      # Default way of interacting with the site is blackbox (via web)
       blackbox: ~
+
+      # For actions that need backend access, use drush.
+      api_driver: "drush"
+      drush_driver: "drush"
+      # When using drush, need to know the docroot or alias.
+      # Even remote aliases work!
+      drush:
+        #root: "/var/www/niwa/docroot"
+        alias: '@dev.niwa.dd'
+
 
 
 # Run these with :
