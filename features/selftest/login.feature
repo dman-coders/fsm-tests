@@ -13,3 +13,9 @@ Feature: DrupalContext
     Given I am logged in as "dummy" with password "dummy"
     When I click "My account"
     Then I should see the heading "History"
+    
+  @api
+  Scenario: Log in as superadmin
+    Given I am logged in as the superuser
+    And I visit "/admin/modules"
+    Then the response status code should be 200
