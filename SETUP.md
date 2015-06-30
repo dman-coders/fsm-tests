@@ -26,7 +26,10 @@ To find your local vender/bin path so you can just type 'behat'.
 
 ### Required - Set up an environment var to define your sites URL
 
-    export BEHAT_PARAMS='{"extensions":{"Behat\\MinkExtension":{"base_url":"http://dev.drupal.local:8083"}}}';
+    export BEHAT_PARAMS='{"extensions":{
+      "Behat\\MinkExtension":{"base_url":"http://dev.drupal.dd:8083"},
+      "Drupal\\DrupalExtension":{"drush":{"alias":"@dev.drupal.dd"}}
+    }}';
 
 These two steps are required for each shell session. 
 Alternatively you can edit the behat.yml file directly.

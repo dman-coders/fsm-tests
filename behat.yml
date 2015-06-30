@@ -8,6 +8,7 @@ default:
         - Drupal\DrupalExtension\Context\MessageContext
         - Drupal\DrupalExtension\Context\DrushContext
         - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\DrupalExtension\Context\DrupalLoginContext
 
   extensions:
     Behat\MinkExtension:
@@ -44,7 +45,6 @@ default:
       # When using drush, need to know the docroot or alias.
       # Even remote aliases work!
       drush:
-        #root: "/var/www/niwa/docroot"
         alias: '@dev.niwa.dd'
 
 
