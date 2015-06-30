@@ -9,6 +9,7 @@ default:
         - Drupal\DrupalExtension\Context\DrushContext
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\DrupalExtension\Context\DrupalLoginContext
+        - Drupal\DrupalExtension\Context\ScreenshotContext
 
   extensions:
     Behat\MinkExtension:
@@ -46,7 +47,6 @@ default:
       # Even remote aliases work!
       drush:
         alias: '@dev.niwa.dd'
-
 
 
 # Run these with :

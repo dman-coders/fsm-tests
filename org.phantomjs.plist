@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<!-- OSX Run selenium server as a background service -->
+<!--
+  Running this as a Service doesn't seem to work yet.
+  Instead, start it directly, with
+
+    /usr/local/bin/phantomjs --webdriver=8643
+
+  Ideally, we would:
+  * COPY this file to your ~/Library/LaunchAgents/ folder.
+  * INSTALL service executable - normally /usr/local/bin/phantomjs .
+  * REGISTER it by running `launchctl load ~/Library/LaunchAgents/org.phantomjs.plist`.
+  * TEST it by visiting http://localhost:8643/wd/hub/static/resource/hub.html
+    May take half a minute to warm up the first time.
+  * USE it from behat .
+
+  * THANK https://gist.github.com/dhrrgn/c2db3dbcc0ccc7dba500
+-->
+
+<dict>
+        <key>Label</key>
+        <string>org.phantomjs</string>
+        <key>OnDemand</key>
+        <true/>
+        <key>ProgramArguments</key>
+        <array>
+          <string>/usr/local/bin/phantomjs</string>
+          <string>--webdriver=8643</string>
+        </array>
+        
+        <!-- This should be able to be registered to wake up on demand -->
+<!--
+        <key>ServiceIPC</key>
+        <true/>
+        <key>Sockets</key>
+        <dict>
+          <key>Listeners</key>
+          <dict>
+            <key>SockServiceName</key>
+            <string>8643</string>
+            <key>SockType</key>
+            <string>stream</string>
+            <key>SockFamily</key>
+            <string>IPv4</string>
+          </dict>
+        </dict>
+-->
+
+        <key>ServiceDescription</key>
+        <string>PhantomJS Server</string>
+        <key>StandardErrorPath</key>
+        <string>/var/log/phantomjs-error.log</string>
+        <key>StandardOutPath</key>
+        <string>/var/log/phantomjs-output.log</string>
+</dict>
+</plist>
