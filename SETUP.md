@@ -36,7 +36,7 @@ Alternatively you can edit the behat.yml file directly.
 
 # Run behat
 
-    behat features/selftest.feature 
+    behat features/selftest/selftest.feature 
 
 You should see the results of the requests behat made to your target webserver.
 
